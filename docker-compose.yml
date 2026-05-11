@@ -9,6 +9,11 @@ services:
       - COUCHDB_URL=${COUCHDB_URL}
       - COUCHDB_USER=${COUCHDB_USER}
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
   nginx:
     image: nginx:alpine
     ports:
@@ -19,6 +24,11 @@ services:
     depends_on:
       - frontend
       - couchdb
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
   couchdb:
     image: couchdb:latest
     ports:
@@ -26,8 +36,12 @@ services:
     environment:
       - COUCHDB_USER=${COUCHDB_USER}
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     volumes:
       - couchdb_data:/opt/couchdb/data
-
 volumes:
   couchdb_data:

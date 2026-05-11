@@ -33,6 +33,7 @@ main() {
     log_info "Levantando infraestructura"
     docker compose down --remove-orphans && echo "Detenido los servicios"
     docker compose up --build -d && echo "Iniciando los servicios"
+    docker image prune -f && echo "Limpiando imagenes viejas"
     log_info "Pagina web corriendo en http://localhost:8081"
 }
 

@@ -1,0 +1,53 @@
+---
+//importo las secciones
+import Layout from "../layouts/Layout.astro";
+import SeccionImagenesInicio from "../components/componentes_pagina_inicio/seccion_imagenes_inicio.astro";
+import SeccionCentroInvestigacion from "../components/componentes_pagina_inicio/seccion_centro_investigacion.astro";
+import SeccionInvestigadores from "../components/componentes_pagina_inicio/seccion_investigadores.astro";
+import SeccionProgramasInvestigacion from "../components/componentes_pagina_inicio/seccion_programas_investigacion.astro";
+import SeccionInvestigacionesDestacadas from "../components/componentes_pagina_inicio/seccion_investigaciones_destacadas.astro";
+import SeccionEditorial from "../components/componentes_pagina_inicio/seccion_editorial.astro";
+import SeccionRemi from "../components/componentes_pagina_inicio/seccion_remi.astro";
+//import las imagenes
+import centroInvestigacion from "../assets/inicio/imagen_inicio_1.jpg";
+import imagenDefault from "../assets/default_investigador/imagen_default_2.png";
+import programaSociologicos from "../assets/programas/programa_sociologicos.jpg";
+import laboratorioPublica from "../assets/programas/logo_opinion_publica.png";
+import programaJuridicos from "../assets/programas/programa_juridico.jpg";
+import programaMedioAmbiente from "../assets/programas/programa_medioAmbiente.jpg";
+import programaInclusion from "../assets/programas/programa_inclusion.jpg";
+import plumaEditorial from "../assets/logos/pluma-editorial.png";
+import remi from "../assets/remi/remi.png";
+//importo las funciones de las bases de datos
+import { getInvestigadoresDirectivos } from "../lib/investigadores.js";
+import { getTodasLasImagenes } from "../lib/imagenesCarrusel.js";
+import { getTodasLasInvestigaciones } from "../lib/investigaciones.js";
+import { getTodosLosLibros } from "../lib/libros.js";
+const InvestigadoresDirectivos = await getInvestigadoresDirectivos(); //obtengo todos los investigadores
+const TodasLasImagenes = await getTodasLasImagenes(); //obtengo todas las imágenes
+const TodasLasInvestigaciones = await getTodasLasInvestigaciones(); //obtengo todas las investigaciones
+const TodosLosLibros = await getTodosLosLibros();
+---
+
+<Layout>
+  <main>
+    <SeccionImagenesInicio TodasLasImagenes={TodasLasImagenes} />
+    <SeccionCentroInvestigacion centroInvestigacion={centroInvestigacion} />
+    <SeccionInvestigadores
+      InvestigadoresDirectivos={InvestigadoresDirectivos}
+      imagenDefault={imagenDefault}
+    />
+    <SeccionProgramasInvestigacion
+      programaSociologicos={programaSociologicos}
+      laboratorioPublica={laboratorioPublica}
+      programaJuridicos={programaJuridicos}
+      programaMedioAmbiente={programaMedioAmbiente}
+      programaInclusion={programaInclusion}
+    />
+    <SeccionInvestigacionesDestacadas
+      TodasLasInvestigaciones={TodasLasInvestigaciones}
+    />
+    <SeccionEditorial TodosLosLibros={TodosLosLibros} />
+    <SeccionRemi plumaEditorial={plumaEditorial} remi={remi} />
+  </main>
+</Layout>

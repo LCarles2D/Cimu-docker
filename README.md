@@ -18,7 +18,7 @@ COUCHDB_PASSWORD=admin_password
 Sigue estos pasos para clonar el proyecto y levantar los servicios automáticamente mediante el script de instalación:
 ```bash
 # 1. Clonar el repositorio
-git clone [https://github.com/LCarles2D/Cimu-docker.git](https://github.com/LCarles2D/Cimu-docker.git)
+git clone https://github.com/LCarles2D/Cimu-docker.git
 cd Cimu-docker
 
 # 2. Dar permisos de ejecución al script

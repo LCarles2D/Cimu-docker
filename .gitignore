@@ -1,1 +1,4 @@
-./fronted/Pagina_web_CIMU/
+# .gitignore
+.env
+.vscode/
+frontend/Pagina_web_CIMU/
